@@ -1,11 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-
 part 'user_response.g.dart';
 
 @JsonSerializable()
 class UserResponse {
   String? email;
-
   String? username;
 
   UserResponse({this.email, this.username});

@@ -15,12 +15,23 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Icon(Icons.menu),
+                    IconButton(
+                      onPressed: null,
+                      icon: Icon(
+                        Icons.location_on,
+                        size: 30,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                    ),
                     Text(
                       'Kalopul, Kathmandu',
                       style: TextStyle(fontSize: 28),
                     ),
-                    Icon(Icons.notifications)
+                    Icon(
+                      Icons.notifications,
+                      size: 30,
+                      color: Colors.green,
+                    )
                   ],
                 ),
               ),

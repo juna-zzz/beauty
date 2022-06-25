@@ -1,9 +1,10 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
 
+import 'package:dio/dio.dart';
 import 'package:mime/mime.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:spaplex/api/http_services.dart';
+
 import '../utils/url.dart';
 
 class ProductApi {
@@ -22,7 +23,7 @@ class ProductApi {
         ); //
       }
       var formData = FormData.fromMap({
-        "name": "Product Name",
+        "name": "productname",
         "price": "100",
         "description": "Product Description",
         "image": image,

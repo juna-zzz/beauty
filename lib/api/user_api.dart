@@ -1,11 +1,10 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
-
 import 'package:flutter/material.dart';
+
 import 'package:spaplex/api/http_services.dart';
-import 'package:spaplex/response/login_response.dart';
 import '../model/user.dart';
+import '../response/login_response.dart';
 import '../response/user_response.dart';
 import '../utils/url.dart';
 
@@ -46,7 +45,6 @@ class UserApi {
       if (response.statusCode == 200) {
         LoginResponse loginResponse = LoginResponse.fromJson(response.data);
         token = loginResponse.token;
-        debugPrint(token.toString());
         isLogin = true;
       }
     } catch (e) {
@@ -59,18 +57,21 @@ class UserApi {
     try {
       var url = baseUrl + getUserInfo;
       var dio = HttpServices().getDioInstance();
+
       var response = await dio.get(url,
           options: Options(
             headers: {
               HttpHeaders.authorizationHeader: "Bearer $token",
             },
           ));
+
       if (response.statusCode == 201) {
         return true;
       }
     } catch (e) {
       throw Exception(e);
     }
+
     return false;
   }
 
@@ -86,6 +87,7 @@ class UserApi {
               HttpHeaders.authorizationHeader: "Bearer $token",
             },
           ));
+
       if (response.statusCode == 200) {
         userResponse = UserResponse.fromJson(response.data);
       } else {
