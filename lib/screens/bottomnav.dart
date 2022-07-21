@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:spaplex/screens/cart/cart_button.dart';
+import 'package:spaplex/screens/favourite.dart';
 import 'package:spaplex/screens/home_screen.dart';
 import 'package:spaplex/screens/profile.dart';
 
@@ -21,9 +23,9 @@ class _MainscreenState extends State<Mainscreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> screens = [
-      const HomeScreen(),
-      const Center(child: Text("Favourite")),
-      const Center(child: Text("Cart")),
+      HomeScreen(),
+      const Favourite(),
+      CartScreen(),
       const ProfileScreen(),
     ];
     return Scaffold(

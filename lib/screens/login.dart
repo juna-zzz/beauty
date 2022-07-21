@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:spaplex/repository/user_repository.dart';
 import 'package:spaplex/utils/url.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+
+import '../utils/controller.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,9 +16,28 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final CartController controller = Get.put(CartController());
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  late Box box1;
+
+  void createBox() async {
+    box1 = await Hive.openBox('login');
+    getData();
+  }
+
+  void getData() async {
+    if (box1.get("email") != null) {
+      _emailController.text = box1.get('email');
+    }
+
+    if (box1.get("password") != null) {
+      _passwordController.text = box1.get('password');
+      _login();
+    }
+  }
 
   _checkNotificationEnabled() {
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
@@ -28,10 +51,13 @@ class _LoginState extends State<Login> {
   void initState() {
     _checkNotificationEnabled();
     super.initState();
+    createBox();
   }
 
-  _navigateToScreen(bool isLogin) {
+  _navigateToScreen(bool isLogin) async {
     if (isLogin && token != null) {
+      await box1.put('email', _emailController.text);
+      await box1.put('password', _passwordController.text);
       AwesomeNotifications().createNotification(
         content: NotificationContent(
             channelKey: 'Basic',

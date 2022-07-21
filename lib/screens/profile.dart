@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import '../repository/user_repository.dart';
 import '../response/user_response.dart';
 
@@ -198,36 +199,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Container(
-                      height: 70,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.of(context).popAndPushNamed('/login');
-                              },
-                              icon: const Icon(
-                                Icons.logout,
-                                color: Colors.white,
-                                size: 35,
-                              ),
-                            ),
-                            const Text(
-                              'Log Out',
-                              style: TextStyle(
+                    child: InkWell(
+                      onTap: () async {
+                        await Hive.box('login').clear();
+                        Navigator.of(context).popAndPushNamed('/login');
+                      },
+                      child: Container(
+                        height: 70,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .popAndPushNamed('/login');
+                                },
+                                icon: const Icon(
+                                  Icons.logout,
                                   color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
+                                  size: 35,
+                                ),
+                              ),
+                              const Text(
+                                'Log Out',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
