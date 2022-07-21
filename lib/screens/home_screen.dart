@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CircleAvatar(
-                      radius: 25,
+                      radius: 20,
                       backgroundColor: Colors.pink,
                       child: IconButton(
                         onPressed: () {
@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.location_on,
-                          size: 28,
+                          size: 24,
                           color: Colors.white,
                         ),
                       ),
@@ -40,10 +40,10 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 28),
                     ),
                     const CircleAvatar(
-                      radius: 25,
+                      radius: 20,
                       child: Icon(
                         Icons.notifications,
-                        size: 30,
+                        size: 24,
                         color: Colors.white,
                       ),
                     )
