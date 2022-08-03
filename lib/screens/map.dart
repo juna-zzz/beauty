@@ -34,7 +34,7 @@ class _MapZoneState extends State<MapZone> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Map Zone'),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.pinkAccent,
         elevation: 0,
       ),
       body: GoogleMap(

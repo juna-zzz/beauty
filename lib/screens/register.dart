@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:spaplex/model/user.dart';
 import 'package:spaplex/repository/user_repository.dart';
@@ -27,6 +28,13 @@ class _RegisterState extends State<Register> {
 
   _displayMessage(bool isSignup) {
     if (isSignup) {
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            channelKey: 'Basic',
+            id: 1,
+            title: 'Spaplex',
+            body: "Register Success"),
+      );
       displaySuccessMessage(context, "Register Success");
       _emailController.clear();
       _passwordController.clear();
@@ -173,6 +181,7 @@ class _RegisterState extends State<Register> {
                     width: width * 0.7,
                     child: TextFormField(
                       controller: _passwordController,
+                      obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Password',
                         filled: true,

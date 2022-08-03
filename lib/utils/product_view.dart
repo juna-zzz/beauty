@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spaplex/model/product.dart';
 import 'package:spaplex/repository/product_repository.dart';
 import 'package:spaplex/response/get_product_response.dart';
+import 'package:spaplex/utils/url.dart';
 
 class ProductAll extends StatefulWidget {
   @override
@@ -55,8 +56,7 @@ class _ProductAllState extends State<ProductAll> {
                                   const BorderRadius.all(Radius.circular(20)),
                               child: Image(
                                 image: NetworkImage(
-                                  'http://10.0.2.2:8080/' +
-                                      lstProduct[index].image.toString(),
+                                  baseUrl + lstProduct[index].image.toString(),
                                 ),
                                 fit: BoxFit.fill,
                               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spaplex/utils/url.dart';
 
 import '../../model/product.dart';
 import '../../repository/product_repository.dart';
@@ -58,8 +59,7 @@ class _LipsState extends State<Lips> {
                                   const BorderRadius.all(Radius.circular(20)),
                               child: Image(
                                 image: NetworkImage(
-                                  'http://10.0.2.2:8080/' +
-                                      lstProduct[index].image.toString(),
+                                  baseUrl + lstProduct[index].image.toString(),
                                 ),
                                 fit: BoxFit.fill,
                               ),

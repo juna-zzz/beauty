@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:spaplex/utils/url.dart';
 
 import '../model/favourite.dart';
 import '../model/product.dart';
@@ -17,6 +18,7 @@ class _ProductInfoState extends State<ProductInfo> {
   final CartController cartController = Get.put(CartController());
   late Box box;
   List<String> id = [];
+
   @override
   Widget build(BuildContext context) {
     final productInfo = ModalRoute.of(context)!.settings.arguments as Product;
@@ -25,7 +27,7 @@ class _ProductInfoState extends State<ProductInfo> {
     @override
     String nameP = productInfo.name.toString();
     String priceP = productInfo.price.toString();
-    String imageP = 'http://10.0.2.2:8080/' + productInfo.image.toString();
+    String imageP = baseUrl + productInfo.image.toString();
 
     placeData() async {
       FavouriteM favourite = FavouriteM(
@@ -50,6 +52,30 @@ class _ProductInfoState extends State<ProductInfo> {
       placeData();
     }
 
+    _favourite() {
+      return SizedBox(
+        width: width * 0.9,
+        height: height * 0.07,
+        child: ElevatedButton(
+          onPressed: () {
+            Get.snackbar("Product", "Added to Favourite");
+            createBox();
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Colors.red,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+          child: const Icon(
+            Icons.favorite_outlined,
+            size: 45,
+            color: Colors.white,
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(nameP),
@@ -66,29 +92,7 @@ class _ProductInfoState extends State<ProductInfo> {
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: width * 0.9,
-                      height: height * 0.07,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Get.snackbar("Product", "Added to Favourite");
-                          createBox();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                        child: const Icon(
-                          Icons.favorite_outlined,
-                          size: 45,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
+                  children: [_favourite()],
                 ),
               ),
               SizedBox(height: height * 0.01),
@@ -101,7 +105,7 @@ class _ProductInfoState extends State<ProductInfo> {
                 child: SizedBox(
                   width: 200,
                   child: Image.network(
-                    'http://10.0.2.2:8080/' + productInfo.image.toString(),
+                    baseUrl + productInfo.image.toString(),
                     fit: BoxFit.cover,
                   ),
                 ),

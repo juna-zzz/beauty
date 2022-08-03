@@ -18,23 +18,26 @@ class _CategoryState extends State<Category> {
     width = size.width;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
+      child: Column(
         children: [
-          SizedBox(width: width * 0.03),
-          InkWell(
-            onTap: () =>
-                Get.to(() => (const CategoryItems()), arguments: "Face"),
-            child: Container(
-              height: height * 0.15,
-              width: width * 0.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(),
-                color: Colors.red,
+          SizedBox(height: height * 0.01),
+          Row(
+            children: [
+              Column(
+                children: const [],
               ),
-              child: Stack(
-                children: [
-                  SizedBox(
+              InkWell(
+                onTap: () =>
+                    Get.to(() => (const CategoryItems()), arguments: "Face"),
+                child: Container(
+                  height: height * 0.15,
+                  width: width * 0.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(),
+                    color: Colors.white,
+                  ),
+                  child: SizedBox(
                     height: height * 0.15,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -44,30 +47,21 @@ class _CategoryState extends State<Category> {
                       ),
                     ),
                   ),
-                  const Center(
-                      child: Text(
-                    'Face',
-                    style: TextStyle(fontSize: 24, color: Colors.pinkAccent),
-                  ))
-                ],
+                ),
               ),
-            ),
-          ),
-          SizedBox(width: width * 0.03),
-          InkWell(
-            onTap: () =>
-                Get.to(() => (const CategoryItems()), arguments: "Eyes"),
-            child: Container(
-              height: height * 0.15,
-              width: width * 0.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(),
-                color: Colors.red,
-              ),
-              child: Stack(
-                children: [
-                  SizedBox(
+              SizedBox(width: width * 0.2),
+              InkWell(
+                onTap: () =>
+                    Get.to(() => (const CategoryItems()), arguments: "Eyes"),
+                child: Container(
+                  height: height * 0.15,
+                  width: width * 0.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(),
+                    color: Colors.red,
+                  ),
+                  child: SizedBox(
                     height: height * 0.15,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -77,30 +71,25 @@ class _CategoryState extends State<Category> {
                       ),
                     ),
                   ),
-                  const Center(
-                      child: Text(
-                    'Eyes',
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ))
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-          SizedBox(width: width * 0.03),
-          InkWell(
-            onTap: () =>
-                Get.to(() => (const CategoryItems()), arguments: "Hair"),
-            child: Container(
-              height: height * 0.15,
-              width: width * 0.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(),
-                color: Colors.red,
-              ),
-              child: Stack(
-                children: [
-                  SizedBox(
+          SizedBox(height: height * 0.02),
+          Row(
+            children: [
+              InkWell(
+                onTap: () =>
+                    Get.to(() => (const CategoryItems()), arguments: "Hair"),
+                child: Container(
+                  height: height * 0.15,
+                  width: width * 0.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(),
+                    color: Colors.red,
+                  ),
+                  child: SizedBox(
                     height: height * 0.15,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -110,30 +99,21 @@ class _CategoryState extends State<Category> {
                       ),
                     ),
                   ),
-                  const Center(
-                      child: Text(
-                    'Hair',
-                    style: TextStyle(fontSize: 24, color: Colors.blue),
-                  ))
-                ],
+                ),
               ),
-            ),
-          ),
-          SizedBox(width: width * 0.03),
-          InkWell(
-            onTap: () =>
-                Get.to(() => (const CategoryItems()), arguments: "Lips"),
-            child: Container(
-              height: height * 0.15,
-              width: width * 0.3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(),
-                color: Colors.red,
-              ),
-              child: Stack(
-                children: [
-                  SizedBox(
+              SizedBox(width: width * 0.2),
+              InkWell(
+                onTap: () =>
+                    Get.to(() => (const CategoryItems()), arguments: "Lips"),
+                child: Container(
+                  height: height * 0.15,
+                  width: width * 0.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(),
+                    color: Colors.red,
+                  ),
+                  child: SizedBox(
                     height: height * 0.15,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -143,16 +123,10 @@ class _CategoryState extends State<Category> {
                       ),
                     ),
                   ),
-                  const Center(
-                      child: Text(
-                    'Lips',
-                    style: TextStyle(fontSize: 24, color: Colors.black),
-                  ))
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-          SizedBox(width: width * 0.04),
         ],
       ),
     );

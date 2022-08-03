@@ -180,6 +180,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     width: width * 0.7,
                     child: TextFormField(
+                      obscureText: true,
                       controller: _passwordController,
                       decoration: InputDecoration(
                         hintText: 'Password',

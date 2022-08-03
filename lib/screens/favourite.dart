@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:spaplex/screens/home_screen.dart';
 
 import '../../utils/controller.dart';
 
@@ -46,11 +47,24 @@ class _FavouriteState extends State<Favourite> {
         valueListenable: box2.listenable(),
         builder: (context, Box box, widget) {
           if (box.isEmpty) {
-            return const Center(
-              child: Text(
-                'Add Some Items to Your Favourites',
-                style: TextStyle(fontSize: 20),
-              ),
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Add Some Items to Your Favourites',
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Shop More',
+                  style: TextStyle(fontSize: 20),
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: SizedBox(
+                      height: 100, width: double.infinity, child: Proximity()),
+                ),
+              ],
             );
           } else {
             return ListView.builder(
@@ -71,16 +85,18 @@ class _FavouriteState extends State<Favourite> {
                     children: [
                       SizedBox(
                         height: height * 0.25,
+                        width: width * 0.4,
                         child: Image(image: NetworkImage(data.image)),
                       ),
                       SizedBox(width: width * 0.03),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             data.name,
                             style: const TextStyle(
-                                fontSize: 28,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.deepOrange),
                           ),
@@ -91,20 +107,13 @@ class _FavouriteState extends State<Favourite> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
+                          SizedBox(height: height * 0.05),
+                          ElevatedButton(
+                              onPressed: () => box2.deleteAt(index),
+                              child: const Text('Delete'))
                         ],
                       ),
-                      SizedBox(width: width * 0.03),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          onPressed: () => box2.deleteAt(index),
-                          icon: const Icon(
-                            Icons.delete,
-                            size: 36,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
+                      SizedBox(width: width * 0.02),
                     ],
                   ),
                 );

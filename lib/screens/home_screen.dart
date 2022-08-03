@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:all_sensors2/all_sensors2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:spaplex/screens/bottomnav.dart';
 import 'package:spaplex/utils/categories.dart';
 import 'package:spaplex/utils/product_view.dart';
 
@@ -77,27 +82,27 @@ class HomeScreen extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.center,
                   child: Text(
                     'Categories',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
               const SizedBox(height: 5),
               const Category(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Align(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.center,
                   child: Text(
                     'Our Products',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 5),
               SizedBox(
                 width: double.infinity,
                 child: ProductAll(),
@@ -107,6 +112,47 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Proximity extends StatefulWidget {
+  const Proximity({Key? key}) : super(key: key);
+
+  @override
+  State<Proximity> createState() => _ProximityState();
+}
+
+class _ProximityState extends State<Proximity> {
+  double _proximity = 0;
+  final List<StreamSubscription<dynamic>> _streamSubscription =
+      <StreamSubscription<dynamic>>[];
+
+  @override
+  void initState() {
+    super.initState();
+    _streamSubscription.add(proximityEvents!.listen((ProximityEvent event) {
+      setState(() {
+        _proximity = event.proximity;
+      });
+    }));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _proximity >= 30
+          ? Center(
+              child: SizedBox(
+                height: 50,
+                width: 200,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Colors.green),
+                    onPressed: () => Get.to(const Mainscreen()),
+                    child: const Text('Add Product')),
+              ),
+            )
+          : null,
     );
   }
 }

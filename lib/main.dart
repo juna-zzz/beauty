@@ -30,7 +30,7 @@ void main() async {
         defaultColor: Colors.amber,
         importance: NotificationImportance.Max,
         ledColor: Colors.white,
-        channelShowBadge: true)
+        channelShowBadge: true),
   ]);
   runApp(const MyApp());
 }

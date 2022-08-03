@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spaplex/utils/url.dart';
 
 import '../../model/product.dart';
 import '../../utils/controller.dart';
@@ -12,7 +13,7 @@ class CartProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => SizedBox(
-        height: 600,
+        height: MediaQuery.of(context).size.height * 0.7,
         child: ListView.builder(
             itemCount: controller.product.length,
             itemBuilder: (BuildContext context, int index) {
@@ -63,8 +64,7 @@ class CartProductScreen extends StatelessWidget {
               height: height * 0.2,
               width: width * 0.4,
               child: Image(
-                image: NetworkImage(
-                    'http://10.0.2.2:8080/' + product.image.toString()),
+                image: NetworkImage(baseUrl + product.image.toString()),
                 fit: BoxFit.fill,
               ),
             ),

@@ -52,7 +52,7 @@ class CartTotal extends StatelessWidget {
                 child: Text(
                   controller.total != '0'
                       ? 'Proceed to Checkout'
-                      : 'Add Items to Cart',
+                      : 'Add Items to Cart First',
                   style: const TextStyle(color: Colors.black, fontSize: 28),
                 ),
               ),
